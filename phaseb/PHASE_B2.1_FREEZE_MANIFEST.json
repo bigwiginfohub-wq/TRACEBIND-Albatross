@@ -1,0 +1,27 @@
+{
+  "freeze_version": "1.0",
+  "freeze_date_utc": "2026-08-04T12:00:00Z",
+  "phase": "B2.1",
+  "phase_title": "Control Selection",
+  "protocol": {
+    "filename": "PHASE_B2.1_CONTROL_SELECTION_PROTOCOL_v3.2_FROZEN.md",
+    "version": "3.2",
+    "sha256": "3d89091817df9ac5748a8e0767bc05c0d2ebb81f6ef60830924633b4cb1d88c3",
+    "status": "FROZEN"
+  },
+  "governance": {
+    "frozen_by": "Mohammed Ali",
+    "freeze_method": "SHA-256 cryptographic hash",
+    "amendment_policy": "Any deviation requires new protocol version and re-execution"
+  },
+  "next_phase": {
+    "phase": "B2.2",
+    "title": "ERA5 Acquisition",
+    "dependency": "Requires B2.1 frozen protocol"
+  },
+  "prerequisites": {
+    "phase_b1": "FROZEN",
+    "phase_b2.1_protocol": "FROZEN",
+    "phase_b2.2_protocol": "DRAFT"
+  }
+}

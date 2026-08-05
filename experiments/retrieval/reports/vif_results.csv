@@ -1,0 +1,13 @@
+Descriptor,VIF
+max_vorticity,inf
+center_vorticity,inf
+mean_local_c_phi,203.69482574528564
+p75_local_c_phi,142.61790614894912
+p25_local_c_phi,117.72893211614281
+std_local_c_phi,51.94362773788977
+mean_wind_speed,17.81231589289079
+min_local_c_phi,16.491737027811013
+max_local_c_phi,12.82482718985874
+max_wind_speed,11.532289138497001
+median_center_distance,8.410952291779104
+global_c_phi,3.943610239830743

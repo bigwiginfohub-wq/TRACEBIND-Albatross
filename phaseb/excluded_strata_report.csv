@@ -1,0 +1,10 @@
+Basin,Intensity,Available,Cap,Selected,Reason,SamplingFraction,SamplingFractionNumeric
+NI,Weak (<64kt),319,127,23,Capped at 40% or target quota,23/319,0.07210031347962383
+NI,Moderate (64-95kt),41,16,16,Capped at 40% or target quota,16/41,0.3902439024390244
+NI,Intense (>=96kt),29,11,11,Capped at 40% or target quota,11/29,0.3793103448275862
+SI,Weak (<64kt),426,170,17,Capped at 40% or target quota,17/426,0.03990610328638498
+SI,Moderate (64-95kt),219,87,17,Capped at 40% or target quota,17/219,0.0776255707762557
+SI,Intense (>=96kt),134,53,16,Capped at 40% or target quota,16/134,0.11940298507462686
+WP,Weak (<64kt),545,218,17,Capped at 40% or target quota,17/545,0.031192660550458717
+WP,Moderate (64-95kt),451,180,17,Capped at 40% or target quota,17/451,0.037694013303769404
+WP,Intense (>=96kt),176,70,16,Capped at 40% or target quota,16/176,0.09090909090909091

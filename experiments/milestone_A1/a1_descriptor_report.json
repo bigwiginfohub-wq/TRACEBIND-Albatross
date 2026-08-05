@@ -1,0 +1,32 @@
+{
+  "milestone": "A1",
+  "timestamp_utc": "2026-07-30T10:42:33.660758+00:00",
+  "input_provenance": {
+    "filename": "temp_synthetic_era5_a1.nc",
+    "sha256": "adb8b4883d43b55239a0d69b767216ee4b4dcc31515bb65ce54e4da78ac0d1fb",
+    "shape": [
+      50,
+      50
+    ],
+    "u_var": "u",
+    "v_var": "v",
+    "lat_var": "latitude",
+    "lon_var": "longitude",
+    "lat_is_descending": false,
+    "xarray_attrs": {
+      "u_units": "m s**-1",
+      "v_units": "m s**-1"
+    }
+  },
+  "operator": "compute_phase_coherence (Phase 7 v1.0 Frozen)",
+  "configuration": {
+    "center": "auto_midpoint",
+    "mask": "none",
+    "coordinate_type": "explicit_physical_meshgrid"
+  },
+  "result": {
+    "c_phi": 0.9999999999965099,
+    "validation_status": "PASS",
+    "expected_minimum": 0.99
+  }
+}

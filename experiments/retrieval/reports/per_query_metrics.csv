@@ -1,0 +1,121 @@
+query,query_class,k,representation,matches,precision,recall
+c2_uuid_49511e7b.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_495c8cf2.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_4b4eea26.nc,North_Bay_of_Bengal,1,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_4c0d80da.nc,Arabian_Sea,1,TRACEBIND (12D),1,1.0,0.5
+c2_uuid_4df18da4.nc,Arabian_Sea,1,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_735327ae.nc,Arabian_Sea_Offshore,1,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_80ab3494.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_a8aaadc4.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_aa20f8c4.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_aebda966.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_c6fae318.nc,Central_India,1,TRACEBIND (12D),1,1.0,1.0
+c2_uuid_d60e0f4a.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_dc364aad.nc,Central_India,1,TRACEBIND (12D),1,1.0,1.0
+c2_uuid_eb59c68d.nc,South_India,1,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_ec81d97e.nc,Indian_Ocean_Equatorial,1,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_f544906f.nc,Arabian_Sea,1,TRACEBIND (12D),1,1.0,0.5
+c2_uuid_fa40c633.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_fbf4a196.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_fca79975.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_ff53a69a.nc,Bay_of_Bengal,1,TRACEBIND (12D),1,1.0,0.1
+c2_uuid_49511e7b.nc,Bay_of_Bengal,3,TRACEBIND (12D),3,1.0,0.3
+c2_uuid_495c8cf2.nc,Bay_of_Bengal,3,TRACEBIND (12D),2,0.6666666666666666,0.2
+c2_uuid_4b4eea26.nc,North_Bay_of_Bengal,3,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_4c0d80da.nc,Arabian_Sea,3,TRACEBIND (12D),1,0.3333333333333333,0.5
+c2_uuid_4df18da4.nc,Arabian_Sea,3,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_735327ae.nc,Arabian_Sea_Offshore,3,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_80ab3494.nc,Bay_of_Bengal,3,TRACEBIND (12D),2,0.6666666666666666,0.2
+c2_uuid_a8aaadc4.nc,Bay_of_Bengal,3,TRACEBIND (12D),3,1.0,0.3
+c2_uuid_aa20f8c4.nc,Bay_of_Bengal,3,TRACEBIND (12D),2,0.6666666666666666,0.2
+c2_uuid_aebda966.nc,Bay_of_Bengal,3,TRACEBIND (12D),3,1.0,0.3
+c2_uuid_c6fae318.nc,Central_India,3,TRACEBIND (12D),1,0.3333333333333333,1.0
+c2_uuid_d60e0f4a.nc,Bay_of_Bengal,3,TRACEBIND (12D),3,1.0,0.3
+c2_uuid_dc364aad.nc,Central_India,3,TRACEBIND (12D),1,0.3333333333333333,1.0
+c2_uuid_eb59c68d.nc,South_India,3,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_ec81d97e.nc,Indian_Ocean_Equatorial,3,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_f544906f.nc,Arabian_Sea,3,TRACEBIND (12D),1,0.3333333333333333,0.5
+c2_uuid_fa40c633.nc,Bay_of_Bengal,3,TRACEBIND (12D),2,0.6666666666666666,0.2
+c2_uuid_fbf4a196.nc,Bay_of_Bengal,3,TRACEBIND (12D),3,1.0,0.3
+c2_uuid_fca79975.nc,Bay_of_Bengal,3,TRACEBIND (12D),3,1.0,0.3
+c2_uuid_ff53a69a.nc,Bay_of_Bengal,3,TRACEBIND (12D),3,1.0,0.3
+c2_uuid_49511e7b.nc,Bay_of_Bengal,5,TRACEBIND (12D),4,0.8,0.4
+c2_uuid_495c8cf2.nc,Bay_of_Bengal,5,TRACEBIND (12D),3,0.6,0.3
+c2_uuid_4b4eea26.nc,North_Bay_of_Bengal,5,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_4c0d80da.nc,Arabian_Sea,5,TRACEBIND (12D),2,0.4,1.0
+c2_uuid_4df18da4.nc,Arabian_Sea,5,TRACEBIND (12D),1,0.2,0.5
+c2_uuid_735327ae.nc,Arabian_Sea_Offshore,5,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_80ab3494.nc,Bay_of_Bengal,5,TRACEBIND (12D),3,0.6,0.3
+c2_uuid_a8aaadc4.nc,Bay_of_Bengal,5,TRACEBIND (12D),4,0.8,0.4
+c2_uuid_aa20f8c4.nc,Bay_of_Bengal,5,TRACEBIND (12D),3,0.6,0.3
+c2_uuid_aebda966.nc,Bay_of_Bengal,5,TRACEBIND (12D),5,1.0,0.5
+c2_uuid_c6fae318.nc,Central_India,5,TRACEBIND (12D),1,0.2,1.0
+c2_uuid_d60e0f4a.nc,Bay_of_Bengal,5,TRACEBIND (12D),4,0.8,0.4
+c2_uuid_dc364aad.nc,Central_India,5,TRACEBIND (12D),1,0.2,1.0
+c2_uuid_eb59c68d.nc,South_India,5,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_ec81d97e.nc,Indian_Ocean_Equatorial,5,TRACEBIND (12D),0,0.0,0.0
+c2_uuid_f544906f.nc,Arabian_Sea,5,TRACEBIND (12D),2,0.4,1.0
+c2_uuid_fa40c633.nc,Bay_of_Bengal,5,TRACEBIND (12D),3,0.6,0.3
+c2_uuid_fbf4a196.nc,Bay_of_Bengal,5,TRACEBIND (12D),5,1.0,0.5
+c2_uuid_fca79975.nc,Bay_of_Bengal,5,TRACEBIND (12D),5,1.0,0.5
+c2_uuid_ff53a69a.nc,Bay_of_Bengal,5,TRACEBIND (12D),5,1.0,0.5
+c2_uuid_49511e7b.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_495c8cf2.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_4b4eea26.nc,North_Bay_of_Bengal,1,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_4c0d80da.nc,Arabian_Sea,1,"PCA (5D, 95% Var)",1,1.0,0.5
+c2_uuid_4df18da4.nc,Arabian_Sea,1,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_735327ae.nc,Arabian_Sea_Offshore,1,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_80ab3494.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_a8aaadc4.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_aa20f8c4.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_aebda966.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_c6fae318.nc,Central_India,1,"PCA (5D, 95% Var)",1,1.0,1.0
+c2_uuid_d60e0f4a.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_dc364aad.nc,Central_India,1,"PCA (5D, 95% Var)",1,1.0,1.0
+c2_uuid_eb59c68d.nc,South_India,1,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_ec81d97e.nc,Indian_Ocean_Equatorial,1,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_f544906f.nc,Arabian_Sea,1,"PCA (5D, 95% Var)",1,1.0,0.5
+c2_uuid_fa40c633.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_fbf4a196.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_fca79975.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_ff53a69a.nc,Bay_of_Bengal,1,"PCA (5D, 95% Var)",1,1.0,0.1
+c2_uuid_49511e7b.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",2,0.6666666666666666,0.2
+c2_uuid_495c8cf2.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",2,0.6666666666666666,0.2
+c2_uuid_4b4eea26.nc,North_Bay_of_Bengal,3,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_4c0d80da.nc,Arabian_Sea,3,"PCA (5D, 95% Var)",2,0.6666666666666666,1.0
+c2_uuid_4df18da4.nc,Arabian_Sea,3,"PCA (5D, 95% Var)",1,0.3333333333333333,0.5
+c2_uuid_735327ae.nc,Arabian_Sea_Offshore,3,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_80ab3494.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",2,0.6666666666666666,0.2
+c2_uuid_a8aaadc4.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",3,1.0,0.3
+c2_uuid_aa20f8c4.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",2,0.6666666666666666,0.2
+c2_uuid_aebda966.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",3,1.0,0.3
+c2_uuid_c6fae318.nc,Central_India,3,"PCA (5D, 95% Var)",1,0.3333333333333333,1.0
+c2_uuid_d60e0f4a.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",3,1.0,0.3
+c2_uuid_dc364aad.nc,Central_India,3,"PCA (5D, 95% Var)",1,0.3333333333333333,1.0
+c2_uuid_eb59c68d.nc,South_India,3,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_ec81d97e.nc,Indian_Ocean_Equatorial,3,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_f544906f.nc,Arabian_Sea,3,"PCA (5D, 95% Var)",1,0.3333333333333333,0.5
+c2_uuid_fa40c633.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",2,0.6666666666666666,0.2
+c2_uuid_fbf4a196.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",3,1.0,0.3
+c2_uuid_fca79975.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",3,1.0,0.3
+c2_uuid_ff53a69a.nc,Bay_of_Bengal,3,"PCA (5D, 95% Var)",3,1.0,0.3
+c2_uuid_49511e7b.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",4,0.8,0.4
+c2_uuid_495c8cf2.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",3,0.6,0.3
+c2_uuid_4b4eea26.nc,North_Bay_of_Bengal,5,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_4c0d80da.nc,Arabian_Sea,5,"PCA (5D, 95% Var)",2,0.4,1.0
+c2_uuid_4df18da4.nc,Arabian_Sea,5,"PCA (5D, 95% Var)",1,0.2,0.5
+c2_uuid_735327ae.nc,Arabian_Sea_Offshore,5,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_80ab3494.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",3,0.6,0.3
+c2_uuid_a8aaadc4.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",4,0.8,0.4
+c2_uuid_aa20f8c4.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",3,0.6,0.3
+c2_uuid_aebda966.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",5,1.0,0.5
+c2_uuid_c6fae318.nc,Central_India,5,"PCA (5D, 95% Var)",1,0.2,1.0
+c2_uuid_d60e0f4a.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",4,0.8,0.4
+c2_uuid_dc364aad.nc,Central_India,5,"PCA (5D, 95% Var)",1,0.2,1.0
+c2_uuid_eb59c68d.nc,South_India,5,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_ec81d97e.nc,Indian_Ocean_Equatorial,5,"PCA (5D, 95% Var)",0,0.0,0.0
+c2_uuid_f544906f.nc,Arabian_Sea,5,"PCA (5D, 95% Var)",2,0.4,1.0
+c2_uuid_fa40c633.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",3,0.6,0.3
+c2_uuid_fbf4a196.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",5,1.0,0.5
+c2_uuid_fca79975.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",5,1.0,0.5
+c2_uuid_ff53a69a.nc,Bay_of_Bengal,5,"PCA (5D, 95% Var)",5,1.0,0.5

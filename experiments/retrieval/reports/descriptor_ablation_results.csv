@@ -1,0 +1,13 @@
+descriptor,p5_with_all,p5_without,delta_p5
+mean_wind_speed,0.51,0.47,0.04
+max_wind_speed,0.51,0.49,0.02
+p25_local_c_phi,0.51,0.49,0.02
+mean_local_c_phi,0.51,0.5,0.01
+p75_local_c_phi,0.51,0.51,0.0
+center_vorticity,0.51,0.51,0.0
+max_vorticity,0.51,0.51,0.0
+std_local_c_phi,0.51,0.51,0.0
+max_local_c_phi,0.51,0.51,0.0
+global_c_phi,0.51,0.52,-0.01
+min_local_c_phi,0.51,0.53,-0.02
+median_center_distance,0.51,0.54,-0.03

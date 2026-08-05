@@ -1,0 +1,87 @@
+# =============================================================================
+# TRACEBIND-Albatross .gitignore
+# =============================================================================
+
+# 1. SECURITY & CREDENTIALS (NEVER PUSH THESE)
+.env
+cdsapi.rc
+*.pem
+*.key
+credentials.json
+secrets.json
+*.log
+
+# 2. LARGE DATA & GENERATED OUTPUTS (Keep repo lightweight)
+data/
+outputs/
+experiments/*/data/
+experiments/*/outputs/
+*.nc
+*.h5
+*.hdf5
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Note: If you have small, essential metadata CSVs/JSONs in 'phaseb/' or 'experiments/' 
+# that are part of the frozen protocol, you can explicitly un-ignore them below.
+# !phaseb/*.json
+# !phaseb/*.csv
+
+# 3. PYTHON ARTIFACTS
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 4. VIRTUAL ENVIRONMENTS
+venv/
+env/
+ENV/
+.venv
+
+# 5. JUPYTER NOTEBOOKS (Ignore checkpoints, keep the .ipynb if needed)
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# 6. IDE & EDITOR FILES
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 7. TESTING & COVERAGE
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# 8. OS & MISC
+*.tmp
+*.temp
+.cache/experiments/retrieval/labels/ibtracs_ALL.csv 
+experiments/retrieval/labels/ibtracs_ALL.csv 
+*.nc 
+*.h5 

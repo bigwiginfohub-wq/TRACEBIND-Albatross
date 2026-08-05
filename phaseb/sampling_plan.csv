@@ -1,0 +1,10 @@
+Basin,Intensity,Available,Cap,Selected
+NI,Weak (<64kt),319,127,23
+NI,Moderate (64-95kt),41,16,16
+NI,Intense (>=96kt),29,11,11
+SI,Weak (<64kt),426,170,17
+SI,Moderate (64-95kt),219,87,17
+SI,Intense (>=96kt),134,53,16
+WP,Weak (<64kt),545,218,17
+WP,Moderate (64-95kt),451,180,17
+WP,Intense (>=96kt),176,70,16

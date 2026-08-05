@@ -1,0 +1,71 @@
+Retrieval Index - Sample Rankings
+Representation: pca_95_coordinates
+Distance Metric: euclidean
+Generated: 2026-08-01T16:44:24.034434+00:00
+=====================================================================================
+
+Query 1: c2_uuid_49511e7b.nc
+-------------------------------------------------------------------------------------
+  Rank  1: c2_uuid_aa20f8c4.nc            distance = 0.9355
+  Rank  2: c2_uuid_aebda966.nc            distance = 0.9706
+  Rank  3: c2_uuid_eb59c68d.nc            distance = 2.1400
+  Rank  4: c2_uuid_fa40c633.nc            distance = 2.2315
+  Rank  5: c2_uuid_fca79975.nc            distance = 2.3069
+  Rank  6: c2_uuid_495c8cf2.nc            distance = 2.3699
+  Rank  7: c2_uuid_4b4eea26.nc            distance = 2.3786
+  Rank  8: c2_uuid_80ab3494.nc            distance = 2.6005
+  Rank  9: c2_uuid_735327ae.nc            distance = 2.7074
+  Rank 10: c2_uuid_c6fae318.nc            distance = 2.7282
+
+Query 2: c2_uuid_495c8cf2.nc
+-------------------------------------------------------------------------------------
+  Rank  1: c2_uuid_80ab3494.nc            distance = 0.6587
+  Rank  2: c2_uuid_4b4eea26.nc            distance = 0.7186
+  Rank  3: c2_uuid_fa40c633.nc            distance = 1.1563
+  Rank  4: c2_uuid_eb59c68d.nc            distance = 1.3209
+  Rank  5: c2_uuid_49511e7b.nc            distance = 2.3699
+  Rank  6: c2_uuid_aebda966.nc            distance = 2.7763
+  Rank  7: c2_uuid_aa20f8c4.nc            distance = 2.9478
+  Rank  8: c2_uuid_d60e0f4a.nc            distance = 3.3572
+  Rank  9: c2_uuid_c6fae318.nc            distance = 3.6768
+  Rank 10: c2_uuid_735327ae.nc            distance = 3.9643
+
+Query 3: c2_uuid_4b4eea26.nc
+-------------------------------------------------------------------------------------
+  Rank  1: c2_uuid_80ab3494.nc            distance = 0.6535
+  Rank  2: c2_uuid_495c8cf2.nc            distance = 0.7186
+  Rank  3: c2_uuid_fa40c633.nc            distance = 1.0715
+  Rank  4: c2_uuid_eb59c68d.nc            distance = 1.8143
+  Rank  5: c2_uuid_49511e7b.nc            distance = 2.3786
+  Rank  6: c2_uuid_aebda966.nc            distance = 2.6137
+  Rank  7: c2_uuid_aa20f8c4.nc            distance = 2.9897
+  Rank  8: c2_uuid_d60e0f4a.nc            distance = 3.2680
+  Rank  9: c2_uuid_ff53a69a.nc            distance = 3.4984
+  Rank 10: c2_uuid_735327ae.nc            distance = 3.8249
+
+Query 4: c2_uuid_4c0d80da.nc
+-------------------------------------------------------------------------------------
+  Rank  1: c2_uuid_4df18da4.nc            distance = 4.3664
+  Rank  2: c2_uuid_a8aaadc4.nc            distance = 4.4980
+  Rank  3: c2_uuid_f544906f.nc            distance = 4.5485
+  Rank  4: c2_uuid_735327ae.nc            distance = 4.5637
+  Rank  5: c2_uuid_c6fae318.nc            distance = 4.7904
+  Rank  6: c2_uuid_dc364aad.nc            distance = 4.8465
+  Rank  7: c2_uuid_d60e0f4a.nc            distance = 4.9550
+  Rank  8: c2_uuid_fca79975.nc            distance = 5.0381
+  Rank  9: c2_uuid_fa40c633.nc            distance = 5.1409
+  Rank 10: c2_uuid_aa20f8c4.nc            distance = 5.2463
+
+Query 5: c2_uuid_4df18da4.nc
+-------------------------------------------------------------------------------------
+  Rank  1: c2_uuid_735327ae.nc            distance = 1.9229
+  Rank  2: c2_uuid_f544906f.nc            distance = 2.9736
+  Rank  3: c2_uuid_dc364aad.nc            distance = 3.0878
+  Rank  4: c2_uuid_a8aaadc4.nc            distance = 3.1376
+  Rank  5: c2_uuid_fca79975.nc            distance = 3.5685
+  Rank  6: c2_uuid_aa20f8c4.nc            distance = 3.7128
+  Rank  7: c2_uuid_c6fae318.nc            distance = 3.7726
+  Rank  8: c2_uuid_d60e0f4a.nc            distance = 4.2599
+  Rank  9: c2_uuid_aebda966.nc            distance = 4.2882
+  Rank 10: c2_uuid_49511e7b.nc            distance = 4.3038
+

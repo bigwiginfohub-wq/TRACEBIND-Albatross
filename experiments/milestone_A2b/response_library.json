@@ -1,0 +1,46 @@
+{
+  "timestamp_utc": "2026-07-30T10:53:58.006457+00:00",
+  "grid": {
+    "nx": 100,
+    "ny": 100,
+    "span": 100.0
+  },
+  "flows": {
+    "uniform_translation": {
+      "c_phi": 0.647882
+    },
+    "solid_body_rotation": {
+      "c_phi": 1.0
+    },
+    "lamb_oseen_vortex": {
+      "c_phi": 1.0
+    },
+    "rankine_vortex": {
+      "c_phi": 1.0
+    },
+    "radial_source": {
+      "c_phi": 0.0
+    },
+    "radial_sink": {
+      "c_phi": 0.0
+    },
+    "saddle_point": {
+      "c_phi": 0.693533
+    },
+    "linear_shear": {
+      "c_phi": 0.647882
+    },
+    "bickley_jet": {
+      "c_phi": 0.647882
+    },
+    "sinusoidal_wave": {
+      "c_phi": 0.647882
+    },
+    "double_vortex_counter_rot": {
+      "c_phi": 0.537824
+    },
+    "meandering_jet": {
+      "c_phi": 0.647882
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "phase": "A (Pilot)",
+    "timestamp_utc": "2026-08-02T17:12:29.378265+00:00",
+    "status": "FROZEN"
+  },
+  "results": {
+    "basin": {
+      "TRACEBIND (12D)": {
+        "precision_mean": 0.51,
+        "ci_95_lower": 0.35,
+        "ci_95_upper": 0.66,
+        "permutation_p_value": 0.001
+      },
+      "PCA (5D, 95% Var)": {
+        "precision_mean": 0.51,
+        "ci_95_lower": 0.35,
+        "ci_95_upper": 0.67,
+        "permutation_p_value": 0.001
+      }
+    },
+    "max_category": {
+      "TRACEBIND (12D)": {
+        "precision_mean": 0.28,
+        "ci_95_lower": 0.12,
+        "ci_95_upper": 0.42,
+        "permutation_p_value": 0.4505
+      },
+      "PCA (5D, 95% Var)": {
+        "precision_mean": 0.3,
+        "ci_95_lower": 0.14,
+        "ci_95_upper": 0.46,
+        "permutation_p_value": 0.3207
+      }
+    },
+    "min_pressure_hpa": {
+      "TRACEBIND (12D)": {
+        "precision_mean": 0.52,
+        "ci_95_lower": 0.36,
+        "ci_95_upper": 0.66,
+        "permutation_p_value": 0.6424
+      },
+      "PCA (5D, 95% Var)": {
+        "precision_mean": 0.52,
+        "ci_95_lower": 0.36,
+        "ci_95_upper": 0.68,
+        "permutation_p_value": 0.6424
+      }
+    },
+    "landfall_yn": {
+      "TRACEBIND (12D)": {
+        "precision_mean": 0.88,
+        "ci_95_lower": 0.66,
+        "ci_95_upper": 1.0,
+        "permutation_p_value": 0.012
+      },
+      "PCA (5D, 95% Var)": {
+        "precision_mean": 0.88,
+        "ci_95_lower": 0.68,
+        "ci_95_upper": 1.0,
+        "permutation_p_value": 0.007
+      }
+    }
+  }
+}

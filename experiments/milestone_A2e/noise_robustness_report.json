@@ -1,0 +1,56 @@
+{
+  "milestone": "A2e",
+  "timestamp_utc": "2026-07-30T11:38:19.973903+00:00",
+  "n_replicates": 30,
+  "noise_levels": [
+    {
+      "noise_fraction": 0.0,
+      "center_error_mean": 0.7142,
+      "center_error_std": 0.0,
+      "cphi_mean": 0.999535,
+      "cphi_std": 0.0
+    },
+    {
+      "noise_fraction": 0.05,
+      "center_error_mean": 3.005,
+      "center_error_std": 1.1589,
+      "cphi_mean": 0.993287,
+      "cphi_std": 0.003521
+    },
+    {
+      "noise_fraction": 0.1,
+      "center_error_mean": 3.7909,
+      "center_error_std": 1.7538,
+      "cphi_mean": 0.987565,
+      "cphi_std": 0.006417
+    },
+    {
+      "noise_fraction": 0.2,
+      "center_error_mean": 31.6936,
+      "center_error_std": 26.2782,
+      "cphi_mean": 0.807621,
+      "cphi_std": 0.159522
+    },
+    {
+      "noise_fraction": 0.5,
+      "center_error_mean": 57.849,
+      "center_error_std": 7.3577,
+      "cphi_mean": 0.641504,
+      "cphi_std": 0.002597
+    },
+    {
+      "noise_fraction": 1.0,
+      "center_error_mean": 58.3865,
+      "center_error_std": 9.0022,
+      "cphi_mean": 0.640108,
+      "cphi_std": 0.006374
+    },
+    {
+      "noise_fraction": 2.0,
+      "center_error_mean": 57.8686,
+      "center_error_std": 10.7168,
+      "cphi_mean": 0.638575,
+      "cphi_std": 0.005009
+    }
+  ]
+}

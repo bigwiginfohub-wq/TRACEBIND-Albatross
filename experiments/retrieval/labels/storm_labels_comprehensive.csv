@@ -1,0 +1,21 @@
+filename,original_case_id,storm_name,basin,season,month,max_wind_kt,min_pressure_hpa,max_category,duration_hours,landfall_yn,case_type,ibtracs_id,source_agency,retrieval_date
+c2_uuid_a8aaadc4.nc,TC_2023_MOCHA,MOCHA,Bay_of_Bengal,,,115.0,938.0,5.0,150.0,Y,Cyclone,2023129N08091,WMO (IBTrACS),2026-08-02
+c2_uuid_fa40c633.nc,TC_2020_AMPHAN,AMPHAN,Bay_of_Bengal,,,130.0,920.0,5.0,150.0,Y,Cyclone,2020136N10088,WMO (IBTrACS),2026-08-02
+c2_uuid_aebda966.nc,TC_2019_FANI,FANI,Bay_of_Bengal,,,115.0,932.0,5.0,210.0,Y,Cyclone,2019116N02090,WMO (IBTrACS),2026-08-02
+c2_uuid_d60e0f4a.nc,TC_2008_NARGIS,NARGIS,Bay_of_Bengal,,,90.0,962.0,4.0,204.0,Y,Cyclone,2008117N11090,WMO (IBTrACS),2026-08-02
+c2_uuid_4c0d80da.nc,TC_2021_TAUKTAE,TAUKTAE,Arabian_Sea,,,100.0,950.0,4.0,144.0,Y,Cyclone,2021133N10071,WMO (IBTrACS),2026-08-02
+c2_uuid_495c8cf2.nc,TC_2021_YAAS,YAAS,Bay_of_Bengal,,,75.0,970.0,1.0,114.0,Y,Cyclone,2021143N15090,WMO (IBTrACS),2026-08-02
+c2_uuid_f544906f.nc,TC_2019_KYARR,KYAAR:KYARR,Arabian_Sea,,,130.0,922.0,4.0,276.0,N,Cyclone,2019296N15066,WMO (IBTrACS),2026-08-02
+c2_uuid_aa20f8c4.nc,TC_2014_HUDHUD,HUDHUD,Bay_of_Bengal,,,100.0,950.0,4.0,195.0,Y,Cyclone,2014279N11096,WMO (IBTrACS),2026-08-02
+c2_uuid_49511e7b.nc,TC_2013_PHAILIN,PHAILIN,Bay_of_Bengal,,,115.0,940.0,5.0,162.0,Y,Cyclone,2013281N12098,WMO (IBTrACS),2026-08-02
+c2_uuid_80ab3494.nc,TC_2019_BULBUL,BULBUL:MATMO,Bay_of_Bengal,,,75.0,976.0,3.0,324.0,Y,Cyclone,2019302N11118,WMO (IBTrACS),2026-08-02
+c2_uuid_ec81d97e.nc,CTRL_2023_IND_01,CTRL_2023_IND_01,Indian_Ocean_Equatorial,,,,,,,,Control,,,2026-08-02
+c2_uuid_fbf4a196.nc,CTRL_2023_IND_02,CTRL_2023_IND_02,Bay_of_Bengal,,,,,,,,Control,,,2026-08-02
+c2_uuid_c6fae318.nc,CTRL_2022_MON_LOW1,CTRL_2022_MON_LOW1,Central_India,,,,,,,,Control,,,2026-08-02
+c2_uuid_4b4eea26.nc,CTRL_2022_MON_LOW2,CTRL_2022_MON_LOW2,North_Bay_of_Bengal,,,,,,,,Control,,,2026-08-02
+c2_uuid_735327ae.nc,CTRL_2021_TROUGH1,CTRL_2021_TROUGH1,Arabian_Sea_Offshore,,,,,,,,Control,,,2026-08-02
+c2_uuid_ff53a69a.nc,CTRL_2021_DEP_01,CTRL_2021_DEP_01,Bay_of_Bengal,,,,,,,,Control,,,2026-08-02
+c2_uuid_eb59c68d.nc,CTRL_2020_SHEAR_01,CTRL_2020_SHEAR_01,South_India,,,,,,,,Control,,,2026-08-02
+c2_uuid_4df18da4.nc,CTRL_2020_SURGE_01,CTRL_2020_SURGE_01,Arabian_Sea,,,,,,,,Control,,,2026-08-02
+c2_uuid_fca79975.nc,CTRL_2019_TROUGH2,CTRL_2019_TROUGH2,Bay_of_Bengal,,,,,,,,Control,,,2026-08-02
+c2_uuid_dc364aad.nc,CTRL_2018_LOW_03,CTRL_2018_LOW_03,Central_India,,,,,,,,Control,,,2026-08-02

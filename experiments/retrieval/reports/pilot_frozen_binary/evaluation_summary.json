@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "descriptor_version": "R1.0",
+    "operator_hash": "02732f08923752fa274bb490311929b2fc88cfc3826ebe59caecb4bab881e5cd",
+    "distance_metric": "euclidean",
+    "python_version": "3.14.4",
+    "numpy_version": "2.4.6",
+    "pandas_version": "3.0.5",
+    "scipy_version": "1.18.0",
+    "sklearn_version": "1.9.0",
+    "git_commit": "unknown_or_not_git",
+    "random_seed": 42,
+    "timestamp_utc": "2026-08-01T17:40:01.603434+00:00",
+    "pilot_study_warning": "n=20 cases. Results are exploratory. Confidence intervals may be wide."
+  },
+  "input_files": {
+    "labels": "C:\\TRACEBIND-Albatross\\experiments\\retrieval\\labels\\storm_labels.csv",
+    "tracebind_rankings": "C:\\TRACEBIND-Albatross\\experiments\\retrieval\\reports\\rankings_descriptor_matrix_scaled_euclidean.csv",
+    "pca_rankings": "C:\\TRACEBIND-Albatross\\experiments\\retrieval\\reports\\rankings_pca_95_coordinates_euclidean.csv"
+  },
+  "random_baseline_mc": {
+    "k=1": {
+      "precision@1_mean": 0.4729,
+      "precision@1_ci_lower": 0.25,
+      "precision@1_ci_upper": 0.7,
+      "recall@1_mean": 0.0525,
+      "recall@1_ci_lower": 0.0278,
+      "recall@1_ci_upper": 0.0778
+    },
+    "k=3": {
+      "precision@3_mean": 0.4729,
+      "precision@3_ci_lower": 0.35,
+      "precision@3_ci_upper": 0.5833,
+      "recall@3_mean": 0.1576,
+      "recall@3_ci_lower": 0.1167,
+      "recall@3_ci_upper": 0.1944
+    },
+    "k=5": {
+      "precision@5_mean": 0.4729,
+      "precision@5_ci_lower": 0.39,
+      "precision@5_ci_upper": 0.56,
+      "recall@5_mean": 0.2627,
+      "recall@5_ci_lower": 0.2167,
+      "recall@5_ci_upper": 0.3111
+    }
+  },
+  "ranking_agreement": {
+    "mean_spearman_rho": 0.9937719298245614,
+    "std_spearman_rho": 0.004590829511624384,
+    "overlap_at_k": {
+      "1": 0.85,
+      "3": 0.9166666666666666,
+      "5": 0.99
+    }
+  },
+  "difference_confidence_intervals": {
+    "k=1": {
+      "mean_difference_tracebind_minus_pca": 0.0999,
+      "ci_95_lower": 0.0,
+      "ci_95_upper": 0.25
+    },
+    "k=3": {
+      "mean_difference_tracebind_minus_pca": 0.0001,
+      "ci_95_lower": -0.05,
+      "ci_95_upper": 0.05
+    },
+    "k=5": {
+      "mean_difference_tracebind_minus_pca": 0.0,
+      "ci_95_lower": 0.0,
+      "ci_95_upper": 0.0
+    }
+  },
+  "effect_sizes_cohens_d": {
+    "k=1": 0.2,
+    "k=3": 0.0,
+    "k=5": 0.0
+  },
+  "confusion_matrices": {
+    "TRACEBIND (12D)_k=1": {
+      "Cyclone_Cyclone": 7,
+      "Cyclone_Control": 3,
+      "Control_Cyclone": 4,
+      "Control_Control": 6
+    },
+    "TRACEBIND (12D)_k=3": {
+      "Cyclone_Cyclone": 16,
+      "Cyclone_Control": 14,
+      "Control_Cyclone": 17,
+      "Control_Control": 13
+    },
+    "TRACEBIND (12D)_k=5": {
+      "Cyclone_Cyclone": 24,
+      "Cyclone_Control": 26,
+      "Control_Cyclone": 29,
+      "Control_Control": 21
+    },
+    "PCA (5D, 95% Var)_k=1": {
+      "Cyclone_Cyclone": 5,
+      "Cyclone_Control": 5,
+      "Control_Cyclone": 4,
+      "Control_Control": 6
+    },
+    "PCA (5D, 95% Var)_k=3": {
+      "Cyclone_Cyclone": 16,
+      "Cyclone_Control": 14,
+      "Control_Cyclone": 17,
+      "Control_Control": 13
+    },
+    "PCA (5D, 95% Var)_k=5": {
+      "Cyclone_Cyclone": 24,
+      "Cyclone_Control": 26,
+      "Control_Cyclone": 29,
+      "Control_Control": 21
+    }
+  },
+  "results": {
+    "TRACEBIND (12D)": {
+      "k=1": {
+        "precision_mean": 0.65,
+        "precision_macro": 0.65,
+        "recall_mean": 0.0722,
+        "permutation_p_value": 0.0849
+      },
+      "k=3": {
+        "precision_mean": 0.4833,
+        "precision_macro": 0.4833,
+        "recall_mean": 0.1611,
+        "permutation_p_value": 0.4855
+      },
+      "k=5": {
+        "precision_mean": 0.45,
+        "precision_macro": 0.45,
+        "recall_mean": 0.25,
+        "permutation_p_value": 0.7143
+      }
+    },
+    "PCA (5D, 95% Var)": {
+      "k=1": {
+        "precision_mean": 0.55,
+        "precision_macro": 0.55,
+        "recall_mean": 0.0611,
+        "permutation_p_value": 0.3317
+      },
+      "k=3": {
+        "precision_mean": 0.4833,
+        "precision_macro": 0.4833,
+        "recall_mean": 0.1611,
+        "permutation_p_value": 0.4965
+      },
+      "k=5": {
+        "precision_mean": 0.45,
+        "precision_macro": 0.45,
+        "recall_mean": 0.25,
+        "permutation_p_value": 0.7253
+      }
+    }
+  }
+}

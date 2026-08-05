@@ -1,0 +1,140 @@
+{
+  "n_cases": 20,
+  "n_bootstrap_iterations": 1000,
+  "vif_results": [
+    {
+      "Descriptor": "max_vorticity",
+      "VIF": Infinity
+    },
+    {
+      "Descriptor": "center_vorticity",
+      "VIF": Infinity
+    },
+    {
+      "Descriptor": "mean_local_c_phi",
+      "VIF": 203.69482574528564
+    },
+    {
+      "Descriptor": "p75_local_c_phi",
+      "VIF": 142.61790614894912
+    },
+    {
+      "Descriptor": "p25_local_c_phi",
+      "VIF": 117.72893211614281
+    },
+    {
+      "Descriptor": "std_local_c_phi",
+      "VIF": 51.94362773788977
+    },
+    {
+      "Descriptor": "mean_wind_speed",
+      "VIF": 17.81231589289079
+    },
+    {
+      "Descriptor": "min_local_c_phi",
+      "VIF": 16.491737027811013
+    },
+    {
+      "Descriptor": "max_local_c_phi",
+      "VIF": 12.82482718985874
+    },
+    {
+      "Descriptor": "max_wind_speed",
+      "VIF": 11.532289138497001
+    },
+    {
+      "Descriptor": "median_center_distance",
+      "VIF": 8.410952291779104
+    },
+    {
+      "Descriptor": "global_c_phi",
+      "VIF": 3.943610239830743
+    }
+  ],
+  "bootstrap_stability": [
+    {
+      "Descriptor": "mean_wind_speed",
+      "Mean_Delta_P5": 0.0393,
+      "Top_1_Frequency_%": 77.6,
+      "Top_3_Frequency_%": 93.0,
+      "Top_5_Frequency_%": 96.0
+    },
+    {
+      "Descriptor": "p25_local_c_phi",
+      "Mean_Delta_P5": 0.0202,
+      "Top_1_Frequency_%": 3.0,
+      "Top_3_Frequency_%": 74.6,
+      "Top_5_Frequency_%": 88.7
+    },
+    {
+      "Descriptor": "max_wind_speed",
+      "Mean_Delta_P5": 0.0198,
+      "Top_1_Frequency_%": 14.9,
+      "Top_3_Frequency_%": 74.1,
+      "Top_5_Frequency_%": 89.5
+    },
+    {
+      "Descriptor": "mean_local_c_phi",
+      "Mean_Delta_P5": 0.0101,
+      "Top_1_Frequency_%": 2.0,
+      "Top_3_Frequency_%": 31.6,
+      "Top_5_Frequency_%": 73.4
+    },
+    {
+      "Descriptor": "max_vorticity",
+      "Mean_Delta_P5": 0.0,
+      "Top_1_Frequency_%": 0.7,
+      "Top_3_Frequency_%": 10.5,
+      "Top_5_Frequency_%": 68.0
+    },
+    {
+      "Descriptor": "global_c_phi",
+      "Mean_Delta_P5": -0.0091,
+      "Top_1_Frequency_%": 1.8,
+      "Top_3_Frequency_%": 10.0,
+      "Top_5_Frequency_%": 40.3
+    },
+    {
+      "Descriptor": "min_local_c_phi",
+      "Mean_Delta_P5": -0.0196,
+      "Top_1_Frequency_%": 0.0,
+      "Top_3_Frequency_%": 3.6,
+      "Top_5_Frequency_%": 8.9
+    },
+    {
+      "Descriptor": "center_vorticity",
+      "Mean_Delta_P5": 0.0,
+      "Top_1_Frequency_%": 0.0,
+      "Top_3_Frequency_%": 2.6,
+      "Top_5_Frequency_%": 34.3
+    },
+    {
+      "Descriptor": "std_local_c_phi",
+      "Mean_Delta_P5": 0.0,
+      "Top_1_Frequency_%": 0.0,
+      "Top_3_Frequency_%": 0.0,
+      "Top_5_Frequency_%": 0.9
+    },
+    {
+      "Descriptor": "max_local_c_phi",
+      "Mean_Delta_P5": 0.0,
+      "Top_1_Frequency_%": 0.0,
+      "Top_3_Frequency_%": 0.0,
+      "Top_5_Frequency_%": 0.0
+    },
+    {
+      "Descriptor": "p75_local_c_phi",
+      "Mean_Delta_P5": 0.0,
+      "Top_1_Frequency_%": 0.0,
+      "Top_3_Frequency_%": 0.0,
+      "Top_5_Frequency_%": 0.0
+    },
+    {
+      "Descriptor": "median_center_distance",
+      "Mean_Delta_P5": -0.0292,
+      "Top_1_Frequency_%": 0.0,
+      "Top_3_Frequency_%": 0.0,
+      "Top_5_Frequency_%": 0.0
+    }
+  ]
+}

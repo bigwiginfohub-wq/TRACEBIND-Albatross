@@ -1,0 +1,50 @@
+{
+  "sampler_version": "TRACEBIND_B1_SAMPLER_V1.5_FINAL",
+  "sampler_sha256": "5b8021055139fd7751e3471a1c4d21cf9c46fe1dc4dec5b2b5e2af27d32f46af",
+  "protocol_version": "1.0",
+  "protocol_sha256": "e840791ac0721f955e881e50739fa635c3d029d462bb02bf138f47e5545381d7",
+  "git_commit_hash": "NOT_GIT_REPOSITORY",
+  "execution_timestamp_utc": "2026-08-04T04:12:08.063046+00:00",
+  "random_seed": 42,
+  "software_versions": {
+    "python": "3.14.4",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5"
+  },
+  "frozen_versions": {
+    "python": "3.14.4",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5"
+  },
+  "source_data": {
+    "filename": "ibtracs_ALL.csv",
+    "sha256": "ad382ca705c7a64d5f224a7e6941f7dcc2a421e0b9fff987ceb63915bfdc25ef"
+  },
+  "input_data": {
+    "filename": "b075_eligible_tier1.csv",
+    "sha256": "16d856c16456683148ecae8c2cbe1887abe39e9199a375a1962199b780d8e08f"
+  },
+  "output_data": {
+    "filename": "selected_cohort_ids.csv",
+    "sha256": "9eef02d62fb02c45b16c8e50a6064adcd08129d147968c49ace9d6a7c4074129"
+  },
+  "sampling_summary": {
+    "total_selected_tcs": 150,
+    "basin_totals": {
+      "NI": 50,
+      "SI": 50,
+      "WP": 50
+    },
+    "stratum_quotas": {
+      "NI_Weak (<64kt)": 23,
+      "NI_Moderate (64-95kt)": 16,
+      "NI_Intense (>=96kt)": 11,
+      "SI_Weak (<64kt)": 17,
+      "SI_Moderate (64-95kt)": 17,
+      "SI_Intense (>=96kt)": 16,
+      "WP_Weak (<64kt)": 17,
+      "WP_Moderate (64-95kt)": 17,
+      "WP_Intense (>=96kt)": 16
+    }
+  }
+}

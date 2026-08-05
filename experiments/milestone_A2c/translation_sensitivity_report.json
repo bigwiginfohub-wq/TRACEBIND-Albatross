@@ -1,0 +1,41 @@
+{
+  "milestone": "A2c",
+  "timestamp_utc": "2026-07-30T11:09:43.983177+00:00",
+  "vortex_center": [
+    0.0,
+    0.0
+  ],
+  "domain_width": 100.0,
+  "translation_sensitivity": [
+    {
+      "offset_percentage": 0,
+      "offset_units": 0.0,
+      "c_phi": 1.0
+    },
+    {
+      "offset_percentage": 10,
+      "offset_units": 10.0,
+      "c_phi": 0.960235
+    },
+    {
+      "offset_percentage": 20,
+      "offset_units": 20.0,
+      "c_phi": 0.88376
+    },
+    {
+      "offset_percentage": 30,
+      "offset_units": 30.0,
+      "c_phi": 0.795894
+    },
+    {
+      "offset_percentage": 40,
+      "offset_units": 40.0,
+      "c_phi": 0.71297
+    },
+    {
+      "offset_percentage": 50,
+      "offset_units": 50.0,
+      "c_phi": 0.655111
+    }
+  ]
+}
