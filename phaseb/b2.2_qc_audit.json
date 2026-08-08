@@ -1,0 +1,31 @@
+{
+  "dataset_identifier": "reanalysis-era5-single-levels",
+  "dataset_doi": "10.24381/cds.adbb2d47",
+  "variables": [
+    "10m_u_component_of_wind",
+    "10m_v_component_of_wind"
+  ],
+  "grid_resolution": "0.25 x 0.25 degrees",
+  "extraction_window": "17x17 native cells",
+  "freeze_fingerprint": {
+    "protocol_sha256": "fd07999b89d3cbc6493abb95dd943ea8cac0b735254038f507bd5dd2c80a558f",
+    "script_sha256": "2f01262947fbf1cd8833c064adbdcd70371f1e43623744cce5b80077a0007e1d",
+    "git_commit_hash": "61bd186cb2be7bcd101310ca22dd3df46e9d870a",
+    "execution_timestamp_utc": "2026-08-08T11:46:50.619372+00:00"
+  },
+  "input_hashes": {
+    "tc_csv_sha256": "9eef02d62fb02c45b16c8e50a6064adcd08129d147968c49ace9d6a7c4074129",
+    "b1_meta_csv_sha256": "b93ab2aed3b6353cdbeb15d0f353f58c933f692f9832e7184cef150652525020",
+    "control_csv_sha256": "5d3986f1a8d9bd5e9727238aeab559bd0ad14d0b4a467f337a4f37413883eecc"
+  },
+  "output_hashes": {
+    "era5_fields_nc_sha256": "872635f3885917b2fba9f06f74d354e25b955d563dca769bb03a22bde085a3c0"
+  },
+  "summary_statistics": {
+    "total_requested": 300,
+    "total_successful": 300,
+    "total_currently_failed": 0,
+    "failure_events_recorded": 0
+  },
+  "failure_log_semantics": "append-only failure event log; repeated failures across resumptions produce multiple records"
+}

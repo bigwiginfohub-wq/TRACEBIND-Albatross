@@ -85,3 +85,6 @@ htmlcov/
 experiments/retrieval/labels/ibtracs_ALL.csv 
 *.nc 
 *.h5 
+phaseb/b2.2_era5_fields.nc 
+phaseb/temp_cases/ 
+*.nc 
