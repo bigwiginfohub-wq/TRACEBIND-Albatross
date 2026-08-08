@@ -1,0 +1,40 @@
+{
+  "freeze_fingerprint": {
+    "protocol_version": "3.2 (Amended B2.1-001)",
+    "protocol_sha256": "3d89091817df9ac5748a8e0767bc05c0d2ebb81f6ef60830924633b4cb1d88c3",
+    "script_sha256": "f502ec507ecc360d40b46a2dfa36c9af16057ba48ef5ed0cfa64715fc51f5db1",
+    "git_commit_hash": "c5d898e45c17bad3b498b5f4343c8a631b049cd7",
+    "execution_timestamp_utc": "2026-08-06T21:31:05.797283+00:00",
+    "random_seed": 43
+  },
+  "software_versions": {
+    "python": "3.14.4",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "xarray": "2026.7.0"
+  },
+  "data_source_hashes": {
+    "ibtracs_sha256": "ad382ca705c7a64d5f224a7e6941f7dcc2a421e0b9fff987ceb63915bfdc25ef",
+    "era5_lsm_sha256": "9df65151d1608990851e2aa8d0e1e4ca063b5181b0568493c42676d2572b202c"
+  },
+  "candidate_pool": {
+    "filename": "STREAMED_NOT_SAVED (Amendment B2.1-001)",
+    "sha256": "e1b1b5cf73f1b2f0bd300f13e9a57d772d992ab776f74e5826af162242a301ff",
+    "row_count": 6714820265,
+    "note": "Exhaustive materialization (313GB) deemed infeasible. Pool cryptographically hashed on-the-fly. Selection via deterministic Top-K priority queue (identity-based)."
+  },
+  "output_file_hashes": {
+    "selected_control_ids.csv": "2a320532e31d23b7ca8380659a63447f3b1e78df2dbc6f7c3c52c73ed99ae2ca"
+  },
+  "summary_statistics": {
+    "total_selected_controls": 150,
+    "total_standby_controls": 1200,
+    "basin_totals": {
+      "NI": 50,
+      "SI": 50,
+      "WP": 50
+    },
+    "total_eligible_candidates_streamed": 6714820265
+  }
+}
