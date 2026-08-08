@@ -1,10 +1,12 @@
 """
-TRACEBIND Phase B4: Statistical Analysis
-=========================================
+TRACEBIND Phase B4: Statistical Analysis Engine
+================================================
 Purpose: Strictly preregistered statistical comparison of C_phi between
 150 TC cases and 150 Control cases using frozen B3 descriptors.
 
 Strictly adheres to PHASE_B4_STATISTICAL_ANALYSIS_PROTOCOL.md v1.0.
+NOTE: This engine is strictly non-result-printing to preserve preregistration discipline.
+Use verify_b4_integrity.py to inspect the results after execution.
 """
 
 import pandas as pd
@@ -16,7 +18,7 @@ import sys
 import scipy
 import sklearn
 import matplotlib
-matplotlib.use('Agg')  # Non-interactive backend
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from pathlib import Path
 from datetime import datetime, timezone
@@ -58,7 +60,6 @@ def get_git_hash():
         return "NOT_GIT_REPOSITORY"
 
 def cliffs_delta(x, y):
-    """Compute Cliff's delta: P(X > Y) - P(X < Y)"""
     n_x, n_y = len(x), len(y)
     x_col = x[:, np.newaxis]
     y_row = y[np.newaxis, :]
@@ -67,7 +68,6 @@ def cliffs_delta(x, y):
     return (greater - less) / (n_x * n_y)
 
 def hedges_g(x, y):
-    """Compute Hedges' g with small-sample bias correction."""
     n_x, n_y = len(x), len(y)
     mean_x, mean_y = np.mean(x), np.mean(y)
     var_x, var_y = np.var(x, ddof=1), np.var(y, ddof=1)
@@ -77,29 +77,20 @@ def hedges_g(x, y):
     return d * correction
 
 def bootstrap_auc(tc_values, ctrl_values, n_boot=2000, seed=43):
-    """Bootstrap AUC with within-class independent resampling."""
     rng = np.random.default_rng(seed)
-    n_tc = len(tc_values)
-    n_ctrl = len(ctrl_values)
-    
+    n_tc, n_ctrl = len(tc_values), len(ctrl_values)
     aucs = []
     for _ in range(n_boot):
         tc_sample = rng.choice(tc_values, size=n_tc, replace=True)
         ctrl_sample = rng.choice(ctrl_values, size=n_ctrl, replace=True)
-        
         y_true = np.concatenate([np.ones(n_tc), np.zeros(n_ctrl)])
         y_score = np.concatenate([tc_sample, ctrl_sample])
-        
-        auc = roc_auc_score(y_true, y_score)
-        aucs.append(auc)
+        aucs.append(roc_auc_score(y_true, y_score))
     
     aucs = np.array(aucs)
-    ci_lower = float(np.percentile(aucs, 2.5))
-    ci_upper = float(np.percentile(aucs, 97.5))
-    return float(np.mean(aucs)), ci_lower, ci_upper, aucs
+    return float(np.mean(aucs)), float(np.percentile(aucs, 2.5)), float(np.percentile(aucs, 97.5))
 
 def ecdf(data):
-    """Compute empirical CDF"""
     x = np.sort(data)
     y = np.arange(1, len(x) + 1) / len(x)
     return x, y
@@ -109,105 +100,68 @@ def ecdf(data):
 # ============================================================================
 def run_analysis():
     print("=" * 85)
-    print("PHASE B4: Statistical Analysis")
+    print("PHASE B4: Statistical Analysis Engine (Strictly Non-Result-Printing)")
     print("=" * 85)
     
-    # 1. Preflight: Verify Input Hash
-    print("\n[1/8] Verifying input artifact integrity...")
+    # 1. Preflight
+    print("\n[1/10] Verifying input artifact integrity...")
     actual_hash = compute_sha256(INPUT_CSV)
     if actual_hash != EXPECTED_INPUT_HASH:
-        raise RuntimeError(f"CRITICAL: Input hash mismatch!\nExpected: {EXPECTED_INPUT_HASH}\nActual:   {actual_hash}")
-    print(f"  ✅ Input CSV SHA256 verified: {actual_hash[:16]}...")
+        raise RuntimeError(f"CRITICAL: Input hash mismatch!")
     
     # 2. Load and Schema Validation
-    print("\n[2/8] Loading and validating data schema...")
+    print("[2/10] Loading and validating data schema...")
     df = pd.read_csv(INPUT_CSV)
-    
     required_columns = {"case_id", "case_type", "case_timestamp", "C_phi", "shell_grid_count", "QC_Status"}
-    missing_columns = required_columns - set(df.columns)
-    if missing_columns:
-        raise ValueError(f"Missing required columns: {sorted(missing_columns)}")
-        
-    allowed_types = {"TC", "Control"}
-    if not set(df["case_type"].dropna().unique()).issubset(allowed_types):
-        raise ValueError("Unexpected case_type value detected.")
+    if not required_columns.issubset(set(df.columns)):
+        raise ValueError("Missing required columns.")
+    if not set(df["case_type"].dropna().unique()).issubset({"TC", "Control"}):
+        raise ValueError("Unexpected case_type value.")
         
     df_filtered = df[df["QC_Status"] == "PASSED"].copy()
-    
     if not np.all(np.isfinite(df_filtered["C_phi"].values)):
-        raise ValueError("Non-finite C_phi value detected in PASSED cases.")
-        
+        raise ValueError("Non-finite C_phi value detected.")
     if len(df_filtered) != 300:
         raise ValueError(f"Expected 300 PASSED cases, found {len(df_filtered)}")
     
-    # 3. Split into Groups
-    tc_df = df_filtered[df_filtered["case_type"] == "TC"].copy()
-    ctrl_df = df_filtered[df_filtered["case_type"] == "Control"].copy()
+    tc_values = df_filtered[df_filtered["case_type"] == "TC"]["C_phi"].values
+    ctrl_values = df_filtered[df_filtered["case_type"] == "Control"]["C_phi"].values
     
-    if len(tc_df) != 150 or len(ctrl_df) != 150:
-        raise ValueError(f"Expected 150 TC and 150 Control, found {len(tc_df)} TC and {len(ctrl_df)} Control")
-    
-    tc_values = tc_df["C_phi"].values
-    ctrl_values = ctrl_df["C_phi"].values
-    print(f"  ✅ TC: {len(tc_df)} cases, Control: {len(ctrl_df)} cases")
-    
-    # 4. Descriptive Statistics
-    print("\n[3/8] Computing descriptive statistics...")
+    # 3. Descriptive Statistics
+    print("[3/10] Computing descriptive statistics...")
     desc_stats = {
-        "TC": {
-            "n": int(len(tc_values)),
-            "mean": float(np.mean(tc_values)),
-            "sd": float(np.std(tc_values, ddof=1)),
-            "median": float(np.median(tc_values)),
-            "iqr": float(np.percentile(tc_values, 75) - np.percentile(tc_values, 25))
-        },
-        "Control": {
-            "n": int(len(ctrl_values)),
-            "mean": float(np.mean(ctrl_values)),
-            "sd": float(np.std(ctrl_values, ddof=1)),
-            "median": float(np.median(ctrl_values)),
-            "iqr": float(np.percentile(ctrl_values, 75) - np.percentile(ctrl_values, 25))
-        }
+        "TC": {"n": int(len(tc_values)), "mean": float(np.mean(tc_values)), "sd": float(np.std(tc_values, ddof=1)), "median": float(np.median(tc_values)), "iqr": float(np.percentile(tc_values, 75) - np.percentile(tc_values, 25))},
+        "Control": {"n": int(len(ctrl_values)), "mean": float(np.mean(ctrl_values)), "sd": float(np.std(ctrl_values, ddof=1)), "median": float(np.median(ctrl_values)), "iqr": float(np.percentile(ctrl_values, 75) - np.percentile(ctrl_values, 25))}
     }
-    print(f"  TC mean: {desc_stats['TC']['mean']:.4f}, Control mean: {desc_stats['Control']['mean']:.4f}")
     
-    # 5. Primary Inferential Test: Mann-Whitney U (Explicit Asymptotic)
-    print("\n[4/8] Running primary test: Mann-Whitney U (asymptotic)...")
+    # 4. Primary Test
+    print("[4/10] Running primary test: Mann-Whitney U (asymptotic)...")
     mw_stat, mw_p = stats.mannwhitneyu(tc_values, ctrl_values, alternative='two-sided', method='asymptotic')
-    print(f"  U = {mw_stat:.2f}, p = {mw_p:.6e}")
     
-    # 6. Primary Effect Size: Cliff's delta
-    print("\n[5/8] Computing primary effect size: Cliff's delta...")
+    # 5. Primary Effect Size
+    print("[5/10] Computing primary effect size: Cliff's delta...")
     cd = cliffs_delta(tc_values, ctrl_values)
-    print(f"  Cliff's delta = {cd:.4f}")
     
-    # 7. Sensitivity Analysis: Welch's t-test
-    print("\n[6/8] Running sensitivity test: Welch's t-test...")
+    # 6. Sensitivity Test
+    print("[6/10] Running sensitivity test: Welch's t-test...")
     t_stat, t_p = stats.ttest_ind(tc_values, ctrl_values, equal_var=False)
-    print(f"  t = {t_stat:.4f}, p = {t_p:.6e}")
     
-    # 8. Sensitivity Effect Size: Hedges' g
-    print("\n[7/8] Computing sensitivity effect size: Hedges' g...")
+    # 7. Sensitivity Effect Size
+    print("[7/10] Computing sensitivity effect size: Hedges' g...")
     hg = hedges_g(tc_values, ctrl_values)
-    print(f"  Hedges' g = {hg:.4f}")
     
-    # 9. ROC/AUC with Bootstrap
-    print("\n[8/8] Computing ROC/AUC with bootstrap (2000 replicates, seed=43)...")
+    # 8. ROC/AUC
+    print("[8/10] Computing ROC/AUC with bootstrap (2000 replicates, seed=43)...")
     y_true = np.concatenate([np.ones(len(tc_values)), np.zeros(len(ctrl_values))])
     y_score = np.concatenate([tc_values, ctrl_values])
-    
     full_auc = float(roc_auc_score(y_true, y_score))
-    mean_auc, ci_lower, ci_upper, boot_aucs = bootstrap_auc(tc_values, ctrl_values, BOOTSTRAP_N, BOOTSTRAP_SEED)
-    print(f"  AUC = {full_auc:.4f} [95% CI: {ci_lower:.4f}, {ci_upper:.4f}]")
+    mean_auc, ci_lower, ci_upper = bootstrap_auc(tc_values, ctrl_values, BOOTSTRAP_N, BOOTSTRAP_SEED)
     
-    # ========================================================================
-    # 10. Visualizations
-    # ========================================================================
-    print("\n[9/10] Generating publication-ready visualizations...")
-    TC_COLOR = '#D62728'
-    CTRL_COLOR = '#1F77B4'
+    # 9. Visualizations
+    print("[9/10] Generating publication-ready visualizations...")
+    TC_COLOR, CTRL_COLOR = '#D62728', '#1F77B4'
     
-    # --- ECDF Plot ---
+    # ECDF
     fig, ax = plt.subplots(figsize=(8, 6))
     tc_x, tc_y = ecdf(tc_values)
     ctrl_x, ctrl_y = ecdf(ctrl_values)
@@ -216,112 +170,47 @@ def run_analysis():
     ax.set_xlabel('$C_\\phi$ (Tangential Alignment)', fontsize=12)
     ax.set_ylabel('Cumulative Probability', fontsize=12)
     ax.set_title('Empirical Cumulative Distribution Function', fontsize=14)
-    ax.legend(fontsize=11)
-    ax.grid(True, alpha=0.3)
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
-    plt.tight_layout()
-    plt.savefig(OUTPUT_VIZ_DIR / "b4_ecdf_plot.png", dpi=300, bbox_inches='tight')
-    plt.close()
+    ax.legend(fontsize=11); ax.grid(True, alpha=0.3); ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+    plt.tight_layout(); plt.savefig(OUTPUT_VIZ_DIR / "b4_ecdf_plot.png", dpi=300, bbox_inches='tight'); plt.close()
     
-    # --- Boxplot with Jitter ---
+    # Boxplot + Jitter
     fig, ax = plt.subplots(figsize=(8, 6))
-    positions = [1, 2]
-    bp = ax.boxplot([tc_values, ctrl_values], positions=positions, widths=0.5, patch_artist=True, showfliers=False)
-    bp['boxes'][0].set_facecolor(TC_COLOR)
-    bp['boxes'][1].set_facecolor(CTRL_COLOR)
-    bp['boxes'][0].set_alpha(0.6)
-    bp['boxes'][1].set_alpha(0.6)
-    
+    bp = ax.boxplot([tc_values, ctrl_values], positions=[1, 2], widths=0.5, patch_artist=True, showfliers=False)
+    bp['boxes'][0].set_facecolor(TC_COLOR); bp['boxes'][1].set_facecolor(CTRL_COLOR)
+    bp['boxes'][0].set_alpha(0.6); bp['boxes'][1].set_alpha(0.6)
     rng_jitter = np.random.default_rng(BOOTSTRAP_SEED)
-    tc_jitter = rng_jitter.uniform(-0.1, 0.1, size=len(tc_values))
-    ctrl_jitter = rng_jitter.uniform(-0.1, 0.1, size=len(ctrl_values))
-    
-    ax.scatter(np.ones(len(tc_values)) + tc_jitter, tc_values, color=TC_COLOR, alpha=0.5, s=20, edgecolors='white', linewidth=0.5)
-    ax.scatter(2 * np.ones(len(ctrl_values)) + ctrl_jitter, ctrl_values, color=CTRL_COLOR, alpha=0.5, s=20, edgecolors='white', linewidth=0.5)
-    
-    ax.set_xticks(positions)
-    ax.set_xticklabels(['TC', 'Control'], fontsize=12)
-    ax.set_ylabel('$C_\\phi$ (Tangential Alignment)', fontsize=12)
-    ax.set_title('Distribution Comparison: TC vs Control', fontsize=14)
+    ax.scatter(np.ones(len(tc_values)) + rng_jitter.uniform(-0.1, 0.1, size=len(tc_values)), tc_values, color=TC_COLOR, alpha=0.5, s=20, edgecolors='white', linewidth=0.5)
+    ax.scatter(2 * np.ones(len(ctrl_values)) + rng_jitter.uniform(-0.1, 0.1, size=len(ctrl_values)), ctrl_values, color=CTRL_COLOR, alpha=0.5, s=20, edgecolors='white', linewidth=0.5)
+    ax.set_xticks([1, 2]); ax.set_xticklabels(['TC', 'Control'], fontsize=12)
+    ax.set_ylabel('$C_\\phi$ (Tangential Alignment)', fontsize=12); ax.set_title('Distribution Comparison: TC vs Control', fontsize=14)
     ax.grid(True, alpha=0.3, axis='y')
-    plt.tight_layout()
-    plt.savefig(OUTPUT_VIZ_DIR / "b4_boxplot_jitter.png", dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.tight_layout(); plt.savefig(OUTPUT_VIZ_DIR / "b4_boxplot_jitter.png", dpi=300, bbox_inches='tight'); plt.close()
     
-    # --- ROC Curve ---
+    # ROC
     fig, ax = plt.subplots(figsize=(8, 6))
     fpr, tpr, _ = roc_curve(y_true, y_score)
     ax.plot(fpr, tpr, color='black', linewidth=2, label=f'ROC Curve (AUC = {full_auc:.3f} [{ci_lower:.3f}, {ci_upper:.3f}])')
     ax.plot([0, 1], [0, 1], 'k--', alpha=0.5, label='Chance (AUC = 0.5)')
-    ax.set_xlabel('False Positive Rate', fontsize=12)
-    ax.set_ylabel('True Positive Rate', fontsize=12)
+    ax.set_xlabel('False Positive Rate', fontsize=12); ax.set_ylabel('True Positive Rate', fontsize=12)
     ax.set_title('Receiver Operating Characteristic Curve', fontsize=14)
-    ax.legend(fontsize=11, loc='lower right')
-    ax.grid(True, alpha=0.3)
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
-    plt.tight_layout()
-    plt.savefig(OUTPUT_VIZ_DIR / "b4_roc_curve.png", dpi=300, bbox_inches='tight')
-    plt.close()
-    print(f"  → Saved 3 visualizations to {OUTPUT_VIZ_DIR.name}/")
+    ax.legend(fontsize=11, loc='lower right'); ax.grid(True, alpha=0.3); ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+    plt.tight_layout(); plt.savefig(OUTPUT_VIZ_DIR / "b4_roc_curve.png", dpi=300, bbox_inches='tight'); plt.close()
     
-    # ========================================================================
-    # 11. Save Statistical Results
-    # ========================================================================
-    print("\n[10/10] Saving statistical results and audit manifest...")
+    # 10. Save Results & Audit
+    print("[10/10] Writing machine-readable results and audit manifest...")
     
     results = {
         "descriptive_statistics": desc_stats,
-        "primary_analysis": {
-            "test": "Mann-Whitney U",
-            "alternative": "two-sided",
-            "method": "asymptotic",
-            "statistic": float(mw_stat),
-            "p_value": float(mw_p),
-            "alpha": ALPHA,
-            "significant": bool(mw_p < ALPHA)
-        },
-        "primary_effect_size": {
-            "metric": "Cliff's delta",
-            "value": float(cd),
-            "interpretation": "P(TC > Control) - P(TC < Control)"
-        },
-        "sensitivity_analysis": {
-            "test": "Welch's t-test",
-            "statistic": float(t_stat),
-            "p_value": float(t_p),
-            "alpha": ALPHA,
-            "significant": bool(t_p < ALPHA)
-        },
-        "sensitivity_effect_size": {
-            "metric": "Hedges' g",
-            "value": float(hg)
-        },
-        "discrimination": {
-            "metric": "ROC AUC",
-            "value": float(full_auc),
-            "bootstrap_n": BOOTSTRAP_N,
-            "bootstrap_seed": BOOTSTRAP_SEED,
-            "ci_lower_95": ci_lower,
-            "ci_upper_95": ci_upper,
-            "positive_class": "TC",
-            "direction": "Higher C_phi predicts TC"
-        },
-        "directional_expectation": {
-            "hypothesized_direction": "TC > Control",
-            "observed_cliffs_delta_sign": "positive" if cd > 0 else "negative" if cd < 0 else "zero",
-            "observed_auc_direction": "above_0.5" if full_auc > 0.5 else "below_0.5" if full_auc < 0.5 else "0.5"
-        }
+        "primary_analysis": {"test": "Mann-Whitney U", "alternative": "two-sided", "method": "asymptotic", "statistic": float(mw_stat), "p_value": float(mw_p), "alpha": ALPHA, "significant": bool(mw_p < ALPHA)},
+        "primary_effect_size": {"metric": "Cliff's delta", "value": float(cd), "interpretation": "P(TC > Control) - P(TC < Control)"},
+        "sensitivity_analysis": {"test": "Welch's t-test", "statistic": float(t_stat), "p_value": float(t_p), "alpha": ALPHA, "significant": bool(t_p < ALPHA)},
+        "sensitivity_effect_size": {"metric": "Hedges' g", "value": float(hg)},
+        "discrimination": {"metric": "ROC AUC", "value": float(full_auc), "bootstrap_n": BOOTSTRAP_N, "bootstrap_seed": BOOTSTRAP_SEED, "ci_lower_95": ci_lower, "ci_upper_95": ci_upper, "positive_class": "TC", "direction": "Higher C_phi predicts TC"},
+        "directional_expectation": {"hypothesized_direction": "TC > Control", "observed_cliffs_delta_sign": "positive" if cd > 0 else "negative" if cd < 0 else "zero", "observed_auc_direction": "above_0.5" if full_auc > 0.5 else "below_0.5" if full_auc < 0.5 else "0.5"}
     }
-    
     with open(OUTPUT_RESULTS, 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2)
-    print(f"  → Saved: {OUTPUT_RESULTS.name}")
     
-    # ========================================================================
-    # 12. Generate Audit Manifest
-    # ========================================================================
     audit_data = {
         "input_artifact_sha256": actual_hash,
         "protocol_sha256": compute_sha256(PROTOCOL_PATH),
@@ -332,28 +221,23 @@ def run_analysis():
         "bootstrap_seed": BOOTSTRAP_SEED,
         "bootstrap_n": BOOTSTRAP_N,
         "alpha": ALPHA,
-        "sample_sizes": {
-            "TC": int(len(tc_values)),
-            "Control": int(len(ctrl_values))
-        },
+        "sample_sizes": {"TC": int(len(tc_values)), "Control": int(len(ctrl_values))},
         "software_environment": {
             "python": sys.version,
             "numpy": np.__version__,
             "pandas": pd.__version__,
             "scipy": scipy.__version__,
-            "scikit_learn": sklearn.__version__
+            "scikit_learn": sklearn.__version__,
+            "matplotlib": matplotlib.__version__
         }
     }
-    
     with open(OUTPUT_AUDIT, 'w', encoding='utf-8') as f:
         json.dump(audit_data, f, indent=2)
-    print(f"  → Saved: {OUTPUT_AUDIT.name}")
     
     print("\n" + "=" * 85)
     print("✅ Phase B4 Statistical Analysis COMPLETE.")
-    print(f"   Primary test (Mann-Whitney U): p = {mw_p:.6e} ({'SIGNIFICANT' if mw_p < ALPHA else 'NOT SIGNIFICANT'})")
-    print(f"   Cliff's delta: {cd:.4f}")
-    print(f"   ROC AUC: {full_auc:.4f} [95% CI: {ci_lower:.4f}, {ci_upper:.4f}]")
+    print("   All machine-readable artifacts and visualizations have been generated.")
+    print("   Run verify_b4_integrity.py to inspect the results.")
     print("=" * 85)
 
 if __name__ == "__main__":

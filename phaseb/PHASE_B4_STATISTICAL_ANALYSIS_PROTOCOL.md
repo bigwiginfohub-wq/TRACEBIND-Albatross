@@ -100,9 +100,8 @@ The following tests shall be executed in this exact order. All tests are two-sid
 
 
 
-\### 5.1 Mann–Whitney U Implementation
-
-The two-sided Mann–Whitney U test shall use the TC and Control $C\_\\phi$ vectors as independent samples. Ties shall be handled using the statistical library's documented tie-correction procedure. The two-sided p-value shall be calculated using the library's standard two-sided method for the observed sample sizes and ties.
+### 5.1 Mann–Whitney U Implementation
+The primary Mann–Whitney U test shall use the asymptotic two-sided p-value with the implementation specified by the frozen analysis engine (SciPy `scipy.stats.mannwhitneyu` with `alternative="two-sided"` and `method="asymptotic"`). The implementation settings and software versions shall be recorded in the audit manifest. No alternative exact, permutation, or continuity-corrected Mann–Whitney result shall replace the preregistered primary result.
 
 
 
