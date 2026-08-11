@@ -1,0 +1,774 @@
+\# PHASE B6: 4D Atmospheric Organization \& Predictive-Utility Validation Protocol
+
+
+
+\*\*Version:\*\* 1.1
+
+\*\*Status:\*\* FROZEN (Protocol)
+
+\*\*Tag:\*\* v1.1-phase-b6-protocol
+
+\*\*Amendment:\*\* B6 Amendment 001 (Control Identity Definition Correction)
+
+\*\*Predecessor:\*\* v1.0-phase-b6-protocol (preserved as historical artifact)
+
+\*\*Predecessor Protocol:\*\* Phase B5 (Reporting \& Interpretation Protocol)
+
+\*\*Successor:\*\* Phase B7 (Virtual Aircraft Energy Trajectory Modeling)
+
+
+
+\---
+
+
+
+\## 1. Objective
+
+
+
+To rigorously characterize the spatiotemporal behavior of the Tangential Alignment Descriptor ($C\_\\phi$) and to explicitly test whether it provides \*\*incremental predictive information\*\* regarding future atmospheric vertical motion beyond the preregistered conventional atmospheric baseline.
+
+
+
+\## 2. Scientific Questions
+
+
+
+1\. Does a measurable atmospheric geometric organization at time $t\_0$ contain information about vertical motion at $t\_0+1h$ that the preregistered conventional atmospheric baseline does not already contain?
+
+2\. What is the spatial sensitivity profile and temporal persistence scale of $C\_\\phi$, and how do these compare to baseline atmospheric variables?
+
+
+
+\## 3. Primary and Secondary Hypotheses
+
+
+
+\* \*\*Primary Null Hypothesis ($H\_0$):\*\* Adding the preregistered TRACEBIND features does not improve out-of-sample prediction of the preregistered atmospheric target relative to the conventional baseline model by a meaningful margin.
+
+\* \*\*Primary Alternative Hypothesis ($H\_1$):\*\* Adding the preregistered TRACEBIND features improves out-of-sample prediction by at least the preregistered minimum useful effect threshold, with the improvement's confidence interval strictly excluding zero.
+
+
+
+\## 4. Frozen Inputs
+
+
+
+\* Frozen B3/B4 artifacts and extraction engine (for methodological continuity).
+
+\* Historical ERA5 reanalysis data (as specified in Sections 5, 7, 8).
+
+\* \*\*B1–B5 Exclusion Manifest:\*\* A machine-readable artifact containing every B1–B5 identity record (canonicalized per unique excluded sampling/system identity) represented in the frozen B1–B5 datasets. This manifest is frozen before B6 cohort ranking and included in the B6 audit/hash chain.
+
+\* \*Note: The B1–B5 cohort is strictly excluded from the B6 dataset to prevent data leakage.\*
+
+
+
+\## 5. ERA5 Variables
+
+
+
+\* \*\*Surface Kinematics:\*\* 10m horizontal wind components ($u\_{10}, v\_{10}$).
+
+\* \*\*Pressure-Level Kinematics:\*\* Horizontal wind components ($u, v$) and pressure vertical velocity ($\\omega$) at specified pressure levels.
+
+\* \*\*Thermodynamics:\*\* Temperature ($T$) and Geopotential ($Z$) at corresponding levels.
+
+
+
+\## 6. Spatial Domain, Cohort Selection \& Freeze Order
+
+
+
+A deterministic, out-of-sample subset of cases from the North Indian (NI), South Indian (SI), and West Pacific (WP) basins, covering the years 2018–2023.
+
+
+
+\*\*B6 cohort size:\*\* Exactly $N = 300$ events.
+
+
+
+\*\*Quota counting rules:\*\*
+
+\- The 150 TC quota is counted by unique IBTrACS SID, not by hourly observation.
+
+\- The 150-control quota is counted by unique B2.1-derived control sampling case, not by multiple ERA5 timestamps or grid observations generated during downstream processing.
+
+
+
+\### 6.1 Event/System Identity Hierarchy (AMENDED by B6 Amendment 001)
+
+
+
+Each B6 event is defined by the following frozen hierarchy:
+
+parent\_system\_id (TC only) OR source\_case\_id (Control only)
+
+↓
+
+event\_id
+
+↓
+
+reference\_time (t₀)
+
+↓
+
+analysis\_window
+
+
+
+\#### TC Events
+
+
+
+\- `parent\_system\_id` = IBTrACS Storm Identifier (`SID`).
+
+\- The SID represents the persistent tropical-cyclone system.
+
+\- All observations/events belonging to the same SID constitute one parent system for B6 partitioning purposes.
+
+\- A given SID may appear in only one B6 partition.
+
+\- If a SID is represented in the frozen B1–B5 analysis population, the entire SID is excluded from the B6 candidate population.
+
+
+
+\#### Control Events
+
+
+
+\- No persistent `parent\_system\_id` is defined.
+
+\- `source\_case\_id` = the frozen B2.1 `ControlID`.
+
+\- `source\_identity\_type` = `B2.1\_CONTROL\_SNAPSHOT`.
+
+\- The underlying atomic B2.1 candidate identity is: `(basin, month, lmc, timestamp, latitude, longitude)`.
+
+\- `ControlID` is an artifact-level identifier assigned after deterministic candidate ranking.
+
+\- No broader atmospheric-system identity may be inferred from the ControlID, timestamp, coordinates, or B2.1 ranking procedure.
+
+\- Each B2.1 control case is treated as a distinct identified sampling unit for B6 cohort construction and partition bookkeeping.
+
+\- \*\*This identification is an artifact/sampling identity only and does not assert physical independence between atmospheric states.\*\*
+
+
+
+\#### Partition Independence Rule
+
+
+
+1\. \*\*TC events:\*\* all events associated with the same IBTrACS SID must belong to exactly one B6 partition.
+
+2\. \*\*Control events:\*\* the same frozen B2.1 `source\_case\_id` must not occur in more than one B6 partition.
+
+3\. No control may be assigned an inferred or synthetic physical `parent\_system\_id`.
+
+4\. Additional temporal or spatial exclusion of control candidates shall not be inferred merely from the existence of a B2.1 ControlID. Any such exclusion must be explicitly defined by the applicable frozen B6 rule and recorded in the exclusion audit.
+
+
+
+\### 6.2 B1–B5 Exclusion Rule
+
+
+
+B6 cohort selection shall exclude any candidate whose applicable identity or defined event window intersects an entry in the frozen B1–B5 Exclusion Manifest.
+
+
+
+\- For \*\*TC candidates\*\*, exclusion operates at the IBTrACS SID/system level.
+
+\- For \*\*control candidates\*\*, exclusion operates according to the explicitly recorded B2.1 control-case identity (`source\_case\_id`) and any independently specified temporal/spatial exclusion rule.
+
+
+
+No parent storm, atmospheric system, or derived event window represented in B1–B5 may appear in B6. The exclusion manifest shall contain one canonical identity record per unique excluded sampling/system identity, with source phases recorded separately where necessary to avoid duplication.
+
+
+
+\### 6.3 Stratification Rule
+
+
+
+The 300-event cohort shall contain exactly 150 TC events and 150 Control events.
+
+
+
+Within each event class, basin and season shall be used as stratification variables during deterministic sampling. The allocation shall be proportional to the eligible population within each basin-season stratum, subject to integer allocation by the largest-remainder method.
+
+
+
+The resulting stratum counts are frozen in the cohort manifest before ERA5 retrieval or feature processing.
+
+
+
+\### 6.4 B6 No-Look-Ahead Invariant (Strict Execution Order)
+
+
+
+1\. Define the eligible population (all TCs and control-eligible locations in 2018–2023).
+
+2\. Apply strict exclusion rules using the frozen B1–B5 Exclusion Manifest.
+
+3\. Compute stratum quotas by applying the largest-remainder allocation rule to the eligible population within each basin-season stratum.
+
+4\. \*\*Within each event class and each frozen basin-season stratum, assign deterministic random ranks using fixed seed `43` and select exactly the number of cases allocated to that stratum by the largest-remainder procedure.\*\*
+
+5\. \*\*Freeze the B6 cohort case IDs, identity assignments, and stratum counts in a manifest.\*\*
+
+6\. \*\*Freeze the development/test partition assignment\*\* (80% development / 20% test).
+
+7\. Retrieve and process ERA5 data.
+
+8\. Perform feature engineering (using development-set statistics only).
+
+9\. Fit models using grouped cross-validation within the development set to select $\\lambda$.
+
+10\. Evaluate on the strictly held-out test set.
+
+
+
+\## 7. Vertical Analysis Levels
+
+
+
+Analysis is strictly confined to the following discrete levels:
+
+\* 10 m (surface wind)
+
+\* 850 hPa (pressure level)
+
+\* 700 hPa (pressure level)
+
+\* 500 hPa (pressure level)
+
+
+
+\## 8. Temporal Sampling \& Reference Time Convention
+
+
+
+\* \*\*Temporal resolution:\*\* Hourly ERA5 data.
+
+\* \*\*Event reference time ($t\_0$):\*\* The exact hourly ERA5 timestamp specified in the frozen B6 cohort manifest. All predictor variables and $C\_\\phi$ values are evaluated at exactly $t\_0$. No interpolation or "nearest available" substitution is permitted.
+
+\* \*\*Target time:\*\* $t\_0 + 1$ hour (exactly one ERA5 hourly step ahead).
+
+\* \*\*Temporal persistence evaluation:\*\* Fixed lags $\\tau \\in \\{1, 3, 6, 12, 24\\}$ hours.
+
+
+
+\## 9. Center Definitions
+
+
+
+\### 9.1 TC Event Centers
+
+
+
+For each TC event, the analysis center $c$ is the exact IBTrACS reported best-track center coordinate $(lat, lon)$ at the event reference time $t\_0$. This rule is applied uniformly to all TC events.
+
+
+
+\### 9.2 Control Event Centers
+
+
+
+Control centers are generated using the \*\*frozen B2.1 control-selection algorithm\*\* (deterministic, storm-centric exclusion, label-independent spatial sampling) applied to the 2018–2023 period.
+
+
+
+\*\*Crucial Constraint:\*\* No atmospheric variable (including $C\_\\phi$, $\\omega$, pressure, wind speed, temperature, or any TRACEBIND descriptor) may influence control-center selection. The control-center algorithm is based solely on the frozen B2.1 sampling design and is independent of any B6 target or outcome.
+
+
+
+\*\*B6 Control Population Regeneration:\*\* For B6 controls, the B2.1 control-selection algorithm is inherited only as a methodological selection rule. The B6 control candidate population is independently regenerated for 2018–2023 using the same frozen candidate-generation, ocean-filtering, storm-exclusion, deduplication, and deterministic-ranking rules. No previously selected B2.1 control record is reused as a B6 control solely because it carries a B2.1 ControlID.
+
+
+
+\### 9.3 No Post-Hoc Adaptation
+
+
+
+No manual adjustment, optimization, or post-hoc adaptation of the analysis center is permitted for any event (TC or Control).
+
+
+
+\## 10. Center-Perturbation / Spatial Sensitivity Experiment
+
+
+
+For a subset of cases (stratified by TC/Control), compute $C\_\\phi$ at the center $c$ displaced by $\\Delta r \\in \\{25, 50, 75, 100, 150\\}$ km at fixed bearings $\\theta \\in \\{0^\\circ, 90^\\circ, 180^\\circ, 270^\\circ\\}$ (North, East, South, West).
+
+
+
+The primary metric is the spatial sensitivity profile of $C\_\\phi(c+\\Delta c, z, t\_0)$ as a function of displacement, without assuming a monotonic decay function. The raw four-direction perturbation data are reported; directional asymmetry metrics are reserved for future exploratory analysis (B6.1 or later).
+
+
+
+\## 11. Dimensional Representation of $C\_\\phi$
+
+
+
+The Tangential Alignment Descriptor retains the frozen B3 mathematical definition. It is evaluated independently for each analysis center $c$, pressure level $z$, and time $t\_0$, creating a set of measurements $C\_\\phi(c, z, t\_0)$.
+
+
+
+\*\*Crucial Constraint:\*\* The 30–150 km radial shell and all geometric conventions defined by the frozen B3 operator remain completely unchanged at every B6 vertical analysis level.
+
+
+
+For each level/time:
+
+$$C\_\\phi(c, z, t\_0) = \\frac{1}{N} \\sum\_{p \\in S} \\left| \\frac{\\vec{V}\_{h,p} \\cdot \\hat{e}\_{\\theta,p}}{|\\vec{V}\_{h,p}|} \\right|$$
+
+
+
+where $\\vec{V}\_{h,p} = (u\_p, v\_p)$ is the \*\*horizontal\*\* wind vector and $\\hat{e}\_{\\theta,p}$ is the horizontal tangential unit vector. The pressure vertical velocity $\\omega$ is \*\*NOT\*\* included in the $C\_\\phi$ calculation; it is retained exclusively as an independent atmospheric target variable.
+
+
+
+\*\*Descriptor–target geometry:\*\* The predictive experiment intentionally compares the shell-integrated geometric descriptor $C\_\\phi$ computed over the frozen 30–150 km B3 analysis shell surrounding center $c$ with the pointwise native-grid target $\\omega\_{700}$ sampled at the nearest native grid point to $c$. This spatial relationship is fixed a priori and is not optimized during B6.
+
+
+
+\*\*B3 validity rule inheritance:\*\* The B3 zero/near-zero horizontal-wind validity rule is inherited unchanged. If $|\\vec{V}\_h| = 0$ at any shell grid point, the $C\_\\phi$ calculation for that case/level fails QC and is excluded from the predictive model.
+
+
+
+\## 12. Temporal Persistence Metrics
+
+
+
+Lag-$\\tau$ autocorrelation for $\\tau \\in \\{1, 3, 6, 12, 24\\}$ hours:
+
+
+
+\* $\\rho(C\_\\phi(t\_0), C\_\\phi(t\_0+\\tau))$ — persistence of $C\_\\phi$
+
+\* $\\rho(\\omega\_{700}(t\_0), \\omega\_{700}(t\_0+\\tau))$ — persistence of vertical motion
+
+\* $\\rho(|\\vec{V}\_{h,700}(t\_0)|, |\\vec{V}\_{h,700}(t\_0+\\tau)|)$ — persistence of horizontal wind speed
+
+
+
+Raw autocorrelation values are reported as descriptive measurements. Establishing whether $C\_\\phi$ persistence is distinct from baseline atmospheric field persistence is a secondary analytical question, not an assumed property.
+
+
+
+\## 13. Conventional Atmospheric Baselines (Frozen)
+
+
+
+The baseline model will include exactly the following predictors, all evaluated at time $t\_0$:
+
+
+
+1\. \*\*Horizontal wind speed:\*\* $|\\vec{V}\_h| = \\sqrt{u\_{700}^2 + v\_{700}^2}$ at 700 hPa.
+
+2\. \*\*Vertical wind shear:\*\* Magnitude of the vector difference between 850 hPa and 700 hPa wind vectors: $|\\vec{V}\_{850} - \\vec{V}\_{700}|$.
+
+3\. \*\*Horizontal temperature gradient magnitude:\*\* $|\\nabla T|$ at 700 hPa, computed using coordinate-aware central differences on the native ERA5 grid.
+
+
+
+\*\*Spatial sampling constraint:\*\* All pointwise baseline predictors in this section are evaluated at the same nearest native ERA5 grid point to the frozen analysis center $c$ used for the primary target definition in Section 14. No spatial interpolation, shell averaging, or post-hoc spatial optimization is permitted for the primary predictive model.
+
+
+
+The temperature gradient $|\\nabla T|$ is computed on the native ERA5 grid using coordinate-aware central differences, and the resulting gradient magnitude is evaluated at that same nearest native grid point.
+
+
+
+\## 14. Albatross-Relevant Target Variable (Frozen)
+
+
+
+\### 14.1 Distinction Between $\\omega$ and $w$
+
+
+
+B6 uses native ERA5 pressure vertical velocity ($\\omega$), measured in Pa/s. It does \*\*not\*\* convert $\\omega$ into geometric vertical air velocity ($w$) in m/s. Any conversion or aircraft-relative interpretation is outside the scope of B6 and reserved for Phase B7.
+
+
+
+\### 14.2 Spatial and Temporal Definition
+
+
+
+\*\*Primary Target:\*\* Native ERA5 pressure vertical velocity ($\\omega\_{700}$) at the \*\*nearest native ERA5 grid point to the frozen analysis center $c$\*\*, at time $t\_0 + 1h$, in Pa/s.
+
+
+
+\* \*\*Sign convention:\*\* $\\omega < 0$ indicates upward pressure motion; $\\omega > 0$ indicates downward pressure motion.
+
+
+
+\### 14.3 Secondary Classification Target
+
+
+
+A binary upward-motion event defined as $\\omega\_{700}(c, t\_0+1h) < -0.2 \\text{ Pa/s}$.
+
+
+
+\*\*Preregistered Rationale:\*\* The threshold $\\omega < -0.2$ Pa/s is a fixed operational classification threshold selected independently of B6 model performance, class balance, or TRACEBIND results. It is intended to identify a relatively strong upward-pressure-motion subset within the ERA5 target distribution. The threshold is not claimed to represent a universal meteorological boundary for strong ascent and will not be optimized or varied after cohort selection.
+
+
+
+\### 14.4 Scope Boundary
+
+
+
+B6 shall \*\*not\*\* equate vertical velocity with atmospheric energy. Aircraft energy exchange, climb performance, and route optimization are explicitly outside the scope of B6 and reserved for Phase B7.
+
+
+
+\## 15. Primary Predictive Metric
+
+
+
+\* \*\*Primary Endpoint:\*\* Out-of-sample $\\Delta R^2$ for the continuous $\\omega\_{700}(c, t\_0+1h)$ target.
+
+\* \*\*Secondary Metrics:\*\* Out-of-sample $\\Delta \\text{RMSE}$, $\\Delta \\text{AUC}$, $\\Delta \\text{Brier Score}$ for the secondary classification target, plus descriptive diagnostics (MAE, bias, correlation) reported for completeness.
+
+
+
+\## 16. Train/Test Separation (Event-Level)
+
+
+
+Splitting occurs strictly at the \*\*event level\*\*, not the row level, to test out-of-sample event-level generalization within the preregistered B6 population (not universal global forecasting).
+
+
+
+\* \*\*Development set:\*\* 80% of events (240 events).
+
+\* \*\*Test set:\*\* 20% of events (60 events), frozen \*before\* any data retrieval, feature engineering, or model training begins.
+
+\* \*\*Grouped cross-validation:\*\* Performed entirely within the 80% development set for selection of $\\lambda$. The test set is never touched until final evaluation.
+
+\* \*\*Leakage Rule:\*\* All observations/events belonging to the same `parent\_system\_id` for TC events, or the same `source\_case\_id` for B2.1 control events, shall belong to exactly one partition.
+
+
+
+\## 17. Frozen Model Family, Feature Set \& Preprocessing
+
+
+
+To isolate the contribution of the TRACEBIND features, the model family is frozen to \*\*Ridge Regression\*\* (for the continuous target) and \*\*Logistic Regression with L2 regularization\*\* (for the binary target).
+
+
+
+\### 17.1 Preprocessing
+
+
+
+All features are standardized ($x' = (x - \\mu\_{\\text{dev}}) / \\sigma\_{\\text{dev}}$). Standardization parameters ($\\mu, \\sigma$) are calculated using the \*\*development partition only\*\* and applied unchanged to the test partition. If $\\sigma\_{\\text{dev}} = 0$, the feature is scaled by 1.0.
+
+
+
+\### 17.2 Regularization Parameter
+
+
+
+Define mathematical regularization strength $\\lambda \\in \\{10^{-4}, 10^{-3}, \\dots, 10^{4}\\}$, selected exclusively using grouped cross-validation within the development set.
+
+
+
+\* Ridge Regression: penalty parameter = $\\lambda$
+
+\* Logistic Regression: $C = 1/\\lambda$
+
+
+
+\### 17.3 Feature Sets
+
+
+
+\* \*\*Model 0 — Persistence Benchmark (Secondary Diagnostic):\*\* $\\hat{\\omega}(t\_0+1h) = \\omega\_{700}(c, t\_0)$. Model 0 is a deterministic persistence benchmark and is \*\*not\*\* subjected to regularization, feature standardization, or cross-validation. It is \*\*not\*\* part of the primary Baseline-versus-TRACEBIND hypothesis test.
+
+\* \*\*Model 1 — Baseline:\*\* The three conventional variables listed in Section 13, evaluated at time $t\_0$.
+
+\* \*\*Model 2 — TRACEBIND:\*\* The three conventional variables at time $t\_0$ \*\*plus\*\* exactly four $C\_\\phi$ measurements at time $t\_0$: $\[C\_\\phi^{10m}, C\_\\phi^{850}, C\_\\phi^{700}, C\_\\phi^{500}]$.
+
+
+
+No derivatives, gradients, or persistence features of $C\_\\phi$ are permitted in the primary predictive model.
+
+
+
+\## 18. Statistical Comparison Procedure (Paired)
+
+
+
+Model comparison will be conducted via evaluation on the strictly held-out test set. The Baseline and TRACEBIND models must generate predictions for the \*\*exact same held-out observations\*\*. Therefore, the comparison is strictly paired:
+
+
+
+$$ \\Delta R^2 = R^2\_{\\text{TRACEBIND, test}} - R^2\_{\\text{Baseline, test}} $$
+
+
+
+Uncertainty for the primary metric will be assessed via \*\*event-level bootstrap resampling\*\* with exactly \*\*2,000 replicates\*\* and fixed seed \*\*43\*\*. The bootstrap must resample \*\*entire events\*\*, carrying the corresponding paired predictions from both models together to preserve the paired nature of the comparison.
+
+
+
+\*\*Persistence Benchmark:\*\* Model 0 is evaluated as a secondary diagnostic to establish how much predictive performance is attributable to simple temporal persistence versus the learned baseline and TRACEBIND features.
+
+
+
+\## 19. Visualization Requirements
+
+
+
+\* Spatial sensitivity profiles ($C\_\\phi$ vs. $\\Delta r$ for each $\\theta$) with confidence intervals.
+
+\* Temporal autocorrelation plots for $C\_\\phi$, $\\omega\_{700}$, and $|\\vec{V}\_{h,700}|$.
+
+\* Standardized coefficient estimates comparing Baseline vs. TRACEBIND models.
+
+\* Calibration curves for the classification target on the test set.
+
+\* Descriptive test-set diagnostics: $R^2$, RMSE, MAE, bias, correlation for all three models.
+
+
+
+\## 20. Outcome Criteria (Three-Tier Framework)
+
+
+
+The preregistered claim that TRACEBIND provides meaningful incremental predictive utility for the B6 target will be evaluated according to the following three-tier framework:
+
+
+
+\### Outcome A — Supported
+
+
+
+$\\Delta R^2 \\ge 0.01$ \*\*AND\*\* the lower bound of the 95% confidence interval for $\\Delta R^2$ is $> 0$.
+
+
+
+\*\*Conclusion:\*\* TRACEBIND $C\_\\phi$ demonstrated statistically supported incremental out-of-sample information for one-hour-ahead 700-hPa pressure vertical motion under the preregistered B6 conditions.
+
+
+
+\### Outcome B — Detectable but Below Utility Threshold
+
+
+
+$0 < \\Delta R^2 < 0.01$ \*\*AND\*\* the lower bound of the 95% confidence interval for $\\Delta R^2$ is $> 0$.
+
+
+
+\*\*Conclusion:\*\* TRACEBIND showed measurable incremental information but did not reach the preregistered minimum useful effect threshold.
+
+
+
+\### Outcome C — Unsupported
+
+
+
+The 95% confidence interval for $\\Delta R^2$ includes zero (i.e., $\\text{CI}\_{95\\%}^{\\text{lower}}(\\Delta R^2) \\le 0$).
+
+
+
+\*\*Conclusion:\*\* No statistically supported incremental predictive utility was demonstrated under the preregistered B6 conditions.
+
+
+
+\*\*Note:\*\* Secondary metrics (AUC, Brier) cannot independently overturn the primary outcome classification. A "failed" hypothesis (Outcome C) is a successful scientific outcome, establishing a clear, defensible boundary for the descriptor's utility.
+
+
+
+\## 21. Reproducibility Requirements
+
+
+
+\* All random seeds (data splitting, model initialization, bootstrapping) fixed to `43`.
+
+\* All code version-controlled and hashed.
+
+\* Computational environment (Python, scikit-learn, xarray versions) recorded in the audit manifest.
+
+
+
+\## 22. Audit/Hash Requirements
+
+
+
+The B6 execution must generate a `b6\_audit.json` containing:
+
+
+
+\* SHA-256 of the B6 protocol (v1.1) and script.
+
+\* SHA-256 of the B6 Amendment 001 document.
+
+\* SHA-256 of the input ERA5 data manifests and the frozen B6 cohort/partition manifest.
+
+\* SHA-256 of the frozen B1–B5 Exclusion Manifest.
+
+\* Git commit hash.
+
+\* Exact performance metrics (with bootstrap confidence intervals) for Persistence, Baseline, and TRACEBIND models on the held-out test set.
+
+\* Outcome classification (A, B, or C).
+
+
+
+\## 23. Freeze Criteria
+
+
+
+\### Protocol Freeze Criteria
+
+
+
+This protocol becomes operative and frozen when the v1.1 document and Amendment 001 are committed and the `v1.1-phase-b6-protocol` Git tag is created. Subsequent implementation must conform to this frozen specification. Any deviation requires a new protocol amendment and version.
+
+
+
+\### Execution Freeze Criteria
+
+
+
+B6 execution is considered frozen only after the following artifacts have been generated, hashed, and verified:
+
+
+
+1\. B1–B5 Exclusion Manifest (with audit hash).
+
+2\. B6 cohort manifest (with identity assignments and stratum counts).
+
+3\. B6 partition manifest (development/test assignment).
+
+4\. Executable script hash.
+
+5\. Computational environment manifest.
+
+6\. Execution audit (including outcome classification).
+
+
+
+\---
+
+
+
+\## Appendix A: B6 Exclusion Manifest Schema
+
+
+
+The B1–B5 Exclusion Manifest shall contain the following fields:
+
+
+
+| Field | Description |
+
+| :--- | :--- |
+
+| `source\_phase` | Originating phase (e.g., B1, B2.1, B3, B4, B5) |
+
+| `source\_identity\_type` | Identity semantics (e.g., `IBTRACS\_SID`, `B2.1\_CONTROL\_SNAPSHOT`) |
+
+| `parent\_system\_id` | IBTrACS SID for TC events; `NULL` for control events |
+
+| `source\_case\_id` | `NULL` for TC events; B2.1 `ControlID` for control events |
+
+| `event\_id` | Unique event identifier within the source phase |
+
+| `event\_type` | `TC` or `CONTROL` |
+
+| `reference\_time` | Reference timestamp (ISO 8601) |
+
+| `latitude` | Reference latitude |
+
+| `longitude` | Reference longitude |
+
+| `exclusion\_radius\_km` | Spatial exclusion radius (if applicable) |
+
+| `exclusion\_time\_before\_h` | Temporal exclusion before reference time (if applicable) |
+
+| `exclusion\_time\_after\_h` | Temporal exclusion after reference time (if applicable) |
+
+| `exclusion\_reason` | Coded reason (e.g., `B1\_PARENT\_SYSTEM\_EXCLUSION`) |
+
+
+
+\### Example Records
+
+
+
+\*\*TC Event (from B1):\*\*
+
+source\_phase = B1
+
+source\_identity\_type = IBTRACS\_SID
+
+parent\_system\_id = 2023317N10094
+
+source\_case\_id = NULL
+
+event\_id = 2023317N10094
+
+event\_type = TC
+
+reference\_time = 2023-11-13T00:00:00
+
+latitude = 10.5
+
+longitude = 94.0
+
+exclusion\_radius\_km = NULL
+
+exclusion\_time\_before\_h = NULL
+
+exclusion\_time\_after\_h = NULL
+
+exclusion\_reason = B1\_PARENT\_SYSTEM\_EXCLUSION
+
+
+
+\*\*Control Event (from B2.1):\*\*
+
+
+
+source\_phase = B2.1
+
+source\_identity\_type = B2.1\_CONTROL\_SNAPSHOT
+
+parent\_system\_id = NULL
+
+source\_case\_id = CTRL\_001
+
+event\_id = CTRL\_001
+
+event\_type = CONTROL
+
+reference\_time = 1992-02-22T18:00:00
+
+latitude = 15.25
+
+longitude = 65.75
+
+exclusion\_radius\_km = NULL
+
+exclusion\_time\_before\_h = NULL
+
+exclusion\_time\_after\_h = NULL
+
+exclusion\_reason = B2.1\_CONTROL\_CASE\_EXCLUSION
+
+
+
+
+
+\### Canonicalization Rule
+
+
+
+The exclusion manifest shall contain one canonical identity record per unique excluded sampling/system identity. If the same identity appears in multiple B1–B5 phases (e.g., a TC SID present in B1, B3, B4, and B5), the manifest shall contain a single record with `source\_phase` listing all relevant phases (e.g., `B1,B3,B4,B5`) to avoid duplication.
+
